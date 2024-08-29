@@ -1,9 +1,9 @@
-const coin = (sides, type) => {
+const coin = (sides) => {
   const flip = () => {
     return sides[Math.floor(Math.random() * 2)];
   };
   const reveal = () => {
-    return type;
+    return sides[0] !== sides[1] ? "real" : "fake";
   };
   return { flip, reveal };
 };
@@ -21,13 +21,13 @@ const pull_from = (array) => {
 };
 
 const simulations = 10000;
-const number_of_coins = 10000;
+const number_of_coins = 9999;
 const number_of_flips = 10;
 
 const real_coins = new Array(number_of_coins)
   .fill("")
-  .map(() => coin(["heads", "tails"], "real"));
-const fake_coin = coin(["heads", "heads"], "fake");
+  .map(() => coin(["heads", "tails"]));
+const fake_coin = coin(["heads", "heads"]);
 const purse = shuffle([...real_coins, fake_coin]);
 
 let completed_simulations = 0;
